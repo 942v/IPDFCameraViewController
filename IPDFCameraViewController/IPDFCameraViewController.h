@@ -24,10 +24,17 @@ typedef NS_ENUM(NSInteger,IPDFCameraViewType)
 @property (nonatomic,assign,getter=isBorderDetectionEnabled) BOOL enableBorderDetection;
 @property (nonatomic,assign,getter=isTorchEnabled) BOOL enableTorch;
 
+@property (nonatomic, assign) float refreshInterval;
+@property (nonatomic, assign) BOOL postEdit;
+@property (nonatomic, assign) void(^overlayRenderBlock)(CGContextRef ctx, CGRect rect, CGPoint topLeft, CGPoint topRight, CGPoint bottomLeft, CGPoint bottomRight);
+
 @property (nonatomic,assign) IPDFCameraViewType cameraViewType;
 
-- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)(void))completionHandler;
-
+- (void)overrideOverlayRenderMethod:(void(^)(CGContextRef ctx, CGRect rect, CGPoint topLeft, CGPoint topRight, CGPoint bottomLeft, CGPoint bottomRight)) block;
+- (void)setEnableBorderDetection:(BOOL)enable;
+- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler;
 - (void)captureImageWithCompletionHander:(void(^)(NSString *imageFilePath))completionHandler;
+- (void)captureImageForPostEditWithCompletionHander:(void(^)(NSString *imgPath, NSArray *features))handler;
+- (void)setBorderDetectionFrameStyle:(UIColor *)fill border:(UIColor *)borderColor borderWidth:(float) width;
 
 @end
