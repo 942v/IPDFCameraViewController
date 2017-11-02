@@ -143,6 +143,8 @@
         }
     }
     
+    _torchSupported = ([device hasTorch] && [device hasFlash]);
+    
     [session commitConfiguration];
     
     // setup for overlay
@@ -293,6 +295,8 @@
 
 - (void)setEnableTorch:(BOOL)enableTorch
 {
+    if (!self.isTorchSupported) return;
+    
     _enableTorch = enableTorch;
     
     AVCaptureDevice *device = self.captureDevice;

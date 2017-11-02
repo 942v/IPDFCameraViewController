@@ -21,8 +21,9 @@ typedef NS_ENUM(NSInteger,IPDFCameraViewType)
 - (void)start;
 - (void)stop;
 
-@property (nonatomic,assign,getter=isBorderDetectionEnabled) BOOL enableBorderDetection;
-@property (nonatomic,assign,getter=isTorchEnabled) BOOL enableTorch;
+@property (nonatomic, assign, getter=isBorderDetectionEnabled) BOOL enableBorderDetection;
+@property (nonatomic, assign, readonly, getter=isTorchSupported) BOOL torchSupported;
+@property (nonatomic, assign, getter=isTorchEnabled) BOOL enableTorch;
 
 @property (nonatomic, assign) float refreshInterval;
 @property (nonatomic, assign) BOOL postEdit;
